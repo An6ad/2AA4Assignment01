@@ -6,7 +6,6 @@ import java.io.FileReader;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.logging.log4j.LogManager;
@@ -24,7 +23,7 @@ public class Main {
         options.addOption("i", "input", true, "maze input");
 
         CommandLineParser parser = new DefaultParser();
-        HelpFormatter formatter = new HelpFormatter();
+     
         CommandLine cmd;
 
         try {
@@ -58,8 +57,6 @@ public class Main {
             logger.info("PATH NOT COMPUTED");
 
         } catch (ParseException e) {
-            logger.error("Error parsing command-line arguments: ", e);
-            formatter.printHelp("MazeRunner", options);
             System.exit(1);
         }
 
