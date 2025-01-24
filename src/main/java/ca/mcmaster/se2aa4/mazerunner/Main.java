@@ -30,11 +30,14 @@ public class Main {
             // Create a ReadMaze object to handle reading and parsing the maze
             ReadMaze readMaze = new ReadMaze();
             readMaze.loadMaze(inputFilePath);
-            System.out.print(readMaze.findEntry()[0]);
-            System.out.print(readMaze.findEntry()[1]);
+            
+            //initialize position object that handles the position in the maze
+            Position position = new Position(readMaze.findEntry()[0], readMaze.findEntry()[1]); 
+
+            System.out.print(position.getCurrentPosition()[0]);
+            System.out.print(",");
+            System.out.print(position.getCurrentPosition()[1]);
             System.out.println();
-            System.out.print(readMaze.findExit()[0]);
-            System.out.print(readMaze.findExit()[1]);
 
 
             // Displaying the maze

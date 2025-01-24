@@ -3,19 +3,21 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public class Path {
     private ReadMaze maze;
-    private Position position;
+    private int[] position;
 
-    public Path(ReadMaze maze, Position position) {
+    public Path(ReadMaze maze, int[] position) {
         this.maze = maze;
         this.position = position;
     }
 
     public boolean moveForward(String direction) {
-        int x = position.getX();
-        int y = position.getY();
+        int x = position[0];
+        int y = position[1];
         //logic for moving left right up down etc
         return true;
     }
+
+    
 
     
 }

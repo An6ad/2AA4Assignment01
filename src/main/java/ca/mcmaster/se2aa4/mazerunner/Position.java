@@ -32,4 +32,9 @@ public class Position {
     public void moveRight() {
         
     }
+
+    public int[] getCurrentPosition() {
+        return new int[] { x, y }; // Return position as {x, y}
+    }
+    
 }
