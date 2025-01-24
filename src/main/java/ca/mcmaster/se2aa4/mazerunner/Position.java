@@ -9,6 +9,12 @@ public class Position {
         this.y = startY;
     }
 
+    
+
+    public int[] getCurrentPosition() {
+        return new int[] { x, y }; // Return position as {x, y}
+    }
+    
     public int getX() {
         return x;
     }
@@ -17,24 +23,11 @@ public class Position {
         return y;
     }
 
-    public void moveUp() {
-        
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public void moveDown() {
-        
+    public void setY(int y) {
+        this.y = y;
     }
-
-    public void moveLeft() {
-        
-    }
-
-    public void moveRight() {
-        
-    }
-
-    public int[] getCurrentPosition() {
-        return new int[] { x, y }; // Return position as {x, y}
-    }
-    
 }

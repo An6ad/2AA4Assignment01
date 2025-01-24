@@ -23,25 +23,26 @@ public class Main {
 
         try {
             cmd = parser.parse(options, args);
-
-            String inputFilePath = cmd.getOptionValue("i");
-            logger.info("Reading maze from " + inputFilePath);
-
             // Create a ReadMaze object to handle reading and parsing the maze
             ReadMaze readMaze = new ReadMaze();
-            readMaze.loadMaze(inputFilePath);
             
-            //initialize position object that handles the position in the maze
-            Position position = new Position(readMaze.findEntry()[0], readMaze.findEntry()[1]); 
 
-            System.out.print(position.getCurrentPosition()[0]);
-            System.out.print(",");
-            System.out.print(position.getCurrentPosition()[1]);
-            System.out.println();
+            String inputFilePath = cmd.getOptionValue("i");
+            
+            readMaze.loadMaze(inputFilePath);
+
+            
+            
+            //initialize path object that handles the position in the maze
+            Path path = new Path(readMaze);
+            logger.info("Reading maze from " + inputFilePath);
+            //simply moving from the start position, to the right through the simplest maze (straight open path)
+            while (path.move("right")) {
+                System.out.println("Moved to: (" + path.getX() + ", " + path.getY() + ")");
+            }
 
 
-            // Displaying the maze
-            readMaze.printMaze();
+            
             logger.info("Compute logic");
         } catch (ParseException e) {
             System.exit(1);

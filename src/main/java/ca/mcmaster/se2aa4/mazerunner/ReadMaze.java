@@ -80,21 +80,21 @@ public class ReadMaze {
         }
     }
 
-    public int[] findEntry() {
+    public Position findEntry() {
         //check the west side
         for (int y = 0; y < height; y++) {
             if (isPassage(0, y)) { 
-                return new int[] { 0, y }; 
+                return new Position(0, y); // Entry point on the west side 
             }
         }
         return null; 
     }
 
-    public int[] findExit() {
+    public Position findExit() {
         //check the east side
         for (int y = 0; y < height; y++) {
             if (isPassage(width - 1, y)) { 
-                return new int[] { width - 1, y }; 
+                return new Position(width - 1, y); 
             }
         }
         return null; 
