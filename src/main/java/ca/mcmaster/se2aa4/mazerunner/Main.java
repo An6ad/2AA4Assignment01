@@ -41,6 +41,13 @@ public class Main {
                 System.out.println("Moved to: (" + path.getX() + ", " + path.getY() + ")");
             }
 
+            logger.info("Factorized Path: " + path.factorizedPath());
+            logger.info("Canonical Path: ");
+            for(int i = 0; i < path.canonicalPathList().size(); i++) {
+                System.out.print(path.canonicalPathList().get(i));
+            }
+            System.out.println();
+
 
             
             logger.info("Compute logic");

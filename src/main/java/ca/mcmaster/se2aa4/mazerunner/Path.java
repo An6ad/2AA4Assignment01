@@ -1,14 +1,19 @@
 
 package ca.mcmaster.se2aa4.mazerunner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Path {
     private ReadMaze maze;
     private Position position;
+    private List<String> canonicalPath;
 
     public Path(ReadMaze maze) {
         this.maze = maze;
         // Assign to the class-level 'position' field, not a local variable
         this.position = maze.findEntry();
+        
+        this.canonicalPath = new ArrayList<>();
     }
 
     public boolean move(String direction) {
@@ -23,6 +28,7 @@ public class Path {
             x -= 1; 
         } else if (direction.equalsIgnoreCase("right")) {
             x += 1; 
+            canonicalPath.add("F"); 
         } else {
             return false; // Invalid direction
         }
@@ -36,19 +42,23 @@ public class Path {
             return false; // Next tile is not passable
         }
 
-        // If valid, update position
+        
         position.setX(x);
         position.setY(y);
 
        
-        // Update the position with the new coordinates
-        position.setX(x);
-        position.setY(y);
+        
 
         return true; // Move successful
     }
 
-    
+    public String factorizedPath() {
+        return canonicalPath.size() + "F";
+    }
+
+    public List<String> canonicalPathList() {
+        return canonicalPath;
+    }
 
     public int getX() {
         return position.getX();
