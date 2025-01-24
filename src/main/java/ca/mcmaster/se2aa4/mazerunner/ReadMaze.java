@@ -67,8 +67,7 @@ public class ReadMaze {
     }
 
     public void printMaze() {
-        System.out.println(height);
-        System.out.println(width);
+        
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (isWall(x, y)) {
@@ -80,4 +79,26 @@ public class ReadMaze {
             System.out.println();
         }
     }
+
+    public int[] findEntry() {
+        //check the west side
+        for (int y = 0; y < height; y++) {
+            if (isPassage(0, y)) { 
+                return new int[] { 0, y }; 
+            }
+        }
+        return null; 
+    }
+
+    public int[] findExit() {
+        //check the east side
+        for (int y = 0; y < height; y++) {
+            if (isPassage(width - 1, y)) { 
+                return new int[] { width - 1, y }; 
+            }
+        }
+        return null; 
+    }
+    
+    
 }
