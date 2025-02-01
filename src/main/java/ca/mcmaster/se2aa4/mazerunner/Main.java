@@ -33,24 +33,12 @@ public class Main {
 
             
             
-            //initialize path object that handles the position in the maze
-            Path path = new Path(readMaze);
-            logger.info("Reading maze from " + inputFilePath);
-            //simply moving from the start position, to the right through the simplest maze (straight open path)
-            while (path.move("right")) {
-                System.out.println("Moved to: (" + path.getX() + ", " + path.getY() + ")");
-            }
-
-            logger.info("Factorized Path: " + path.factorizedPath());
-            logger.info("Canonical Path: ");
-            for(int i = 0; i < path.canonicalPathList().size(); i++) {
-                System.out.print(path.canonicalPathList().get(i));
-            }
-            System.out.println();
-
+            //implement pathfinding strategy
+            PathfindingImplementation implementation = new RightHandAlgorithm();
+            Path path = new Path(readMaze, implementation);
 
             
-            logger.info("Compute logic");
+            logger.info("Computed Path: " + path.computePath());
         } catch (ParseException e) {
             System.exit(1);
         }
