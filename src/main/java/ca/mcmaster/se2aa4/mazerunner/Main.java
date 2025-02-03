@@ -13,7 +13,7 @@ public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-        logger.info("Starting Maze Runner");
+       
 
         Options options = new Options();
         options.addOption("i", "input", true, "maze input");
@@ -34,7 +34,7 @@ public class Main {
             
             
             //implement pathfinding strategy
-            PathfindingImplementation implementation = new RightHandAlgorithm();
+            RightHandAlgorithm implementation = new RightHandAlgorithm();
             Path path = new Path(readMaze, implementation);
 
             
