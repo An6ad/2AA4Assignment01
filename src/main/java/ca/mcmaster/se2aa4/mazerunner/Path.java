@@ -12,7 +12,9 @@ public class Path {
         this.position = maze.findEntry();
     }
 
-    public String computePath() {
+    public String[] computePath() {
         return implementation.computePath(maze, position);
     }
+
+   
 }

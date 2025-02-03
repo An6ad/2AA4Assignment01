@@ -17,31 +17,52 @@ public class Main {
 
         Options options = new Options();
         options.addOption("i", "input", true, "maze input");
+        options.addOption("p", "path", true, "path validation");
 
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd;
 
         try {
             cmd = parser.parse(options, args);
-            // Create a ReadMaze object to handle reading and parsing the maze
-            ReadMaze readMaze = new ReadMaze();
-            
+        ReadMaze readMaze = new ReadMaze();
 
+        if (cmd.hasOption("p")) {
+            String pathInput = cmd.getOptionValue("p").replaceAll("\\s", ""); // Ignore spaces
+
+        if (cmd.hasOption("i")) {
             String inputFilePath = cmd.getOptionValue("i");
-            
             readMaze.loadMaze(inputFilePath);
+        }
+
+        
+        RightHandAlgorithm implementation = new RightHandAlgorithm();
+        Path path = new Path(readMaze, implementation);
+
+        
+        String canonicalPath = path.computePath()[0].replaceAll("\\s", "");
+        String factorizedPath = path.computePath()[1].replaceAll("\\s", "");
+
+        if (canonicalPath.equals(pathInput) || factorizedPath.equals(pathInput)) {
+            logger.info("Valid Path");
+        } else {
+            logger.info("Invalid Path");
+        }
+    } else if (cmd.hasOption("i")) {
+        String inputFilePath = cmd.getOptionValue("i");
+        readMaze.loadMaze(inputFilePath);
+
+
+        RightHandAlgorithm implementation = new RightHandAlgorithm();
+        Path path = new Path(readMaze, implementation);
+
+        logger.info("Computed Path: \n" + "Canonical: " + path.computePath()[0] + "\nFactorized: " + path.computePath()[1]);
+    }
 
             
-            
-            //implement pathfinding strategy
-            RightHandAlgorithm implementation = new RightHandAlgorithm();
-            Path path = new Path(readMaze, implementation);
-
-            
-            logger.info("Computed Path: " + path.computePath());
+    
         } catch (ParseException e) {
             System.exit(1);
         }
-        logger.info("End");
+        
     }
 }

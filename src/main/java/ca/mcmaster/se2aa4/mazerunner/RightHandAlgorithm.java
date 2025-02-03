@@ -3,7 +3,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 public class RightHandAlgorithm implements PathfindingImplementation {
 
     @Override
-    public String computePath(ReadMaze maze, Position start) {
+    public String[] computePath(ReadMaze maze, Position start) {
         // find the exit position in the maze
         Position exitPosition = maze.findExit();
         
@@ -86,7 +86,9 @@ public class RightHandAlgorithm implements PathfindingImplementation {
         // factorized path
         String factorizedPath = factorizeForwardMoves(canonicalPath);
 
-        return "Canonical: " + canonicalPath + "\nFactorized: " + factorizedPath;
+        String[] paths = {canonicalPath, factorizedPath};
+
+        return paths;
     }
 
     
